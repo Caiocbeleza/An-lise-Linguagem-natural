@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Análise de Linguagem natural</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
-      height: 200%;
+      height: 160%;
 
     }
 
@@ -72,23 +72,16 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+			<div class="panel panel-default">
+  <div class="panel-body">Texto Selecionado</div>
+	<div class="panel-body">Classificação</div>
+	<div class="panel-body">Resumo</div>
+</div>
     </div>
     <div class="col-sm-8 text-left">
       <h1>Welcome</h1>
 			<body>
 	        <!-- List of uploaded documents -->
-	        {% if documents %}
-	            <ul>
-	                {% for document in documents %}
-	                    <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
-	                {% endfor %}
-	            </ul>
-	        {% else %}
-	            <p>No documents.</p>
-	        {% endif %}
 
 	        <!-- Upload form. Note enctype attribute! -->
 	        <form action="{% url "list" %}" method="post" enctype="multipart/form-data">
@@ -108,11 +101,20 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>Arquivo</p>
+
+				<p>Histórico de Documentos</p>
+				{% if documents %}
+						<ul>
+								{% for document in documents %}
+									<li><p><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></p></li>
+								{% endfor %}
+						</ul>
+				{% else %}
+						<p>Nenhum documento.</p>
+				{% endif %}
+
       </div>
-      <div class="well">
-        <p>Arquivo</p>
-      </div>
+
     </div>
   </div>
 </div>
